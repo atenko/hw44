@@ -1,0 +1,43 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+<h1><a href="#hw4" id="hw4">HW4</a></h1>
+<h2><a href="#displaying-histogram-in-github-and-getting-used-to-markdown" id="displaying-histogram-in-github-and-getting-used-to-markdown">Displaying histogram in Github and getting used to markdown</a></h2>
+<h3><a href="#atenko" id="atenko">Atenko</a></h3>
+<p><strong>Methods:</strong> First, students initialized their dataset with 30 observations. Second, they created an <code>age</code> variable with a mean of 57 years and a standard deviation of 15. They alternatively simulated a t-distribution. Finally, they plotted a histogram of the <code>age</code> variables from both normal distribution and t-distribution.</p>
+<pre><code>. cls
+
+. clear
+
+. set obs 30
+number of observations (_N) was 0, now 30
+
+. gen age=(rnormal()*15)+57 
+
+. gen age_t=(rt(_N)*15)+57
+
+. hist age, ///
+&gt;    fcolor(orange%40) /// simulated normal 
+&gt;    addplot(hist age_t, fcolor(midblue%50)) /// simulated t-distributio
+&gt; n 
+&gt;    normal /// theoretical normal
+&gt;    legend(on ///
+&gt;       lab(1 &quot;Sampled from Normal&quot;) ///
+&gt;           lab(2 &quot;Theoretical Normal&quot;) ///
+&gt;           lab(3 &quot;Sampled from t-distribution&quot;) ///
+&gt;           )
+(bin=5, start=32.548187, width=10.937869)
+
+. graph export hist_age.png, replace 
+(note: file hist_age.png not found)
+(file hist_age.png written in PNG format)
+
+</code></pre>
+<p><img src="Graph.svg" ></p>
+<p><strong>Results</strong> Students found that the shapes of the graphs are different. Then, they made do-file which will be converted to html by <code>dyndoc</code>. They also got used to Greek symbols in the result section like &ldquo;Distributkon of $\text{Age, years} \sim \mathcal{N}(\mu=57,\sigma^{2}=225)$&rdquo;</p>
